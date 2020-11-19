@@ -46,19 +46,15 @@ final class FriendsViewController: UITableViewController {
     super.viewDidLoad()
     
     title = "Friendvatars"
-    
+
     let reuseIdentifier = String(describing: FriendCell.self)
-    tableView.register(
-      UINib(nibName: reuseIdentifier, bundle: nil),
-      forCellReuseIdentifier: reuseIdentifier
-    )
+    tableView.register(UINib(nibName: reuseIdentifier, bundle: nil),
+                       forCellReuseIdentifier: reuseIdentifier)
     
-    navigationItem.leftBarButtonItem = UIBarButtonItem(
-      title: "Sign Out",
-      style: .plain,
-      target: self,
-      action: #selector(signOut)
-    )
+    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out",
+                                                       style: .plain,
+                                                       target: self,
+                                                       action: #selector(signOut))
     
     friends = [
       User(name: "Bob Appleseed", email: "ryha26+bob@gmail.com"),
@@ -71,7 +67,7 @@ final class FriendsViewController: UITableViewController {
   // MARK: - Actions
   
   @objc private func signOut() {
-    // sign out
+    try? AuthController.signOut()
   }
   
   override func numberOfSections(in tableView: UITableView) -> Int {
@@ -91,9 +87,7 @@ final class FriendsViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendCell.self)) as? FriendCell else {
-      fatalError()
-    }
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendCell.self)) as? FriendCell else { fatalError() }
     
     let user = indexPath.section == 0 ? Settings.currentUser! : friends[indexPath.row]
     cell.nameLabel.text = user.name
@@ -110,5 +104,4 @@ final class FriendsViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
   }
-  
 }

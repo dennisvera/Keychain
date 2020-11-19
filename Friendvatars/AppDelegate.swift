@@ -35,6 +35,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     AppController.shared.show(in: UIWindow(frame: UIScreen.main.bounds))
     return true
   }
-  
 }
-

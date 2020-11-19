@@ -31,7 +31,7 @@ import UIKit
 final class NavigationController: UINavigationController {
 
   override var preferredStatusBarStyle: UIStatusBarStyle {
-    return .lightContent
+    return .darkContent
   }
   
   override func viewDidLoad() {
@@ -39,7 +39,7 @@ final class NavigationController: UINavigationController {
     
     navigationBar.tintColor = .white
     navigationBar.barTintColor = .rwGreen
-    navigationBar.prefersLargeTitles = true
+    navigationBar.prefersLargeTitles = false
     navigationBar.titleTextAttributes = [
       NSAttributedStringKey.foregroundColor: UIColor.white
     ]

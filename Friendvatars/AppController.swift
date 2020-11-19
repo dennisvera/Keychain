@@ -29,6 +29,8 @@
 import UIKit
 
 final class AppController {
+
+  // MARK: - Properties
   
   static let shared = AppController()
   
@@ -40,7 +42,16 @@ final class AppController {
       }
     }
   }
-  
+
+  init() {
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(handleAuthState),
+                                           name: .loginStatusChanged,
+                                           object: nil)
+  }
+
+  // MARK: - Helper Methods
+
   func show(in window: UIWindow?) {
     guard let window = window else {
       fatalError("Cannot layout app with a nil window.")
